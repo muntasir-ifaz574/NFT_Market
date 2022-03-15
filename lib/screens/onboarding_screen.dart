@@ -121,6 +121,40 @@ class OnBoardingScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 40.h),
+            Container(
+              height: 200.h,
+              padding: EdgeInsets.only(left: _padding),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SlideAnimation(
+                    intervalStart: 0.4,
+                    begin: Offset(0, 20),
+                    child: FadeAnimation(
+                      intervalStart: 0.4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          EventStat(
+                            title: '5.8M+',
+                            subtitle: 'Art Work',
+                          ),
+                          EventStat(
+                            title: '15.2K+',
+                            subtitle: 'Artist',
+                          ),
+                          EventStat(
+                            title: '38K+',
+                            subtitle: 'Auction',
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -157,7 +191,6 @@ class _AppBar extends StatelessWidget {
   }
 }
 
-//App logo
 class AppLogo extends StatelessWidget {
   const AppLogo({Key? key}) : super(key: key);
 
@@ -205,6 +238,36 @@ class ColoredText extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class EventStat extends StatelessWidget {
+  const EventStat({Key? key, required this.title, required this.subtitle})
+      : super(key: key);
+
+  final String title;
+  final String subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 16.r,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          subtitle,
+          style: TextStyle(
+            fontSize: 14.r,
+            color: Colors.black54,
+          ),
+        ),
+      ],
     );
   }
 }
