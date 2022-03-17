@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:nft_marketplace/animations/fade_animation.dart';
+import 'package:nft_marketplace/animations/page_transition.dart';
 import 'package:nft_marketplace/animations/slide_animation.dart';
 import 'package:nft_marketplace/constants.dart';
+import 'package:nft_marketplace/screens/home_screen.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   OnBoardingScreen({Key? key}) : super(key: key);
@@ -152,7 +154,96 @@ class OnBoardingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(width: 60.w),
+                  Expanded(
+                    child: SlideAnimation(
+                      intervalStart: 0.2,
+                      child: FadeAnimation(
+                        intervalEnd: 0.2,
+                        child: Container(
+                          padding: EdgeInsets.all(24.r),
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(248, 247, 196, 217),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      child: HomeScreen(),
+                                      type: PageTransitionType.fadeIn,
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  width: 40.r,
+                                  height: 40.r,
+                                  decoration: BoxDecoration(
+                                    color: Color.fromARGB(248, 248, 158, 196),
+                                  ),
+                                  child: Icon(Iconsax.arrow_right_1),
+                                ),
+                              ),
+                              SizedBox(height: 24.h),
+                              Text(
+                                'Discover \nArtWork',
+                                style: TextStyle(
+                                  fontSize: 24.r,
+                                  height: 1.3,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 9,
+                                ),
+                              ),
+                              SizedBox(height: 12.h),
+                              Divider(
+                                thickness: 2,
+                                endIndent: 120.w,
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
+              ),
+            ),
+            SizedBox(height: 20.h),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: _padding,
+              ),
+              child: SlideAnimation(
+                begin: Offset(0, 20),
+                intervalStart: 0.6,
+                child: FadeAnimation(
+                  intervalStart: 0.6,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Supported By',
+                        style: bodyTextStyle,
+                      ),
+                      SvgPicture.asset(
+                        'assets/images/binance.svg',
+                        width: 24.r,
+                      ),
+                      SvgPicture.asset(
+                        'assets/images/xrp.svg',
+                        width: 22.r,
+                      ),
+                      SvgPicture.asset(
+                        'assets/images/huobi.svg',
+                        width: 22.r,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
@@ -162,7 +253,6 @@ class OnBoardingScreen extends StatelessWidget {
   }
 }
 
-//App Bar
 class _AppBar extends StatelessWidget {
   const _AppBar({Key? key}) : super(key: key);
 
@@ -260,6 +350,7 @@ class EventStat extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        SizedBox(height: 8.h),
         Text(
           subtitle,
           style: TextStyle(
